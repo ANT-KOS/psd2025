@@ -12,6 +12,7 @@ public class Robot extends Agent
     LightSensor centerLS, leftLS, rightLS;
     RangeSensorBelt sensorBelt;
     RobotPrimitive robotPrimitive;
+
     double lumIntensity1, lumIntensity2, lumIntensity3;
     double targetLum = 0.85;
     double distanceToObstacleLimit = 0.65;

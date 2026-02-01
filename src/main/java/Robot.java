@@ -121,17 +121,17 @@ public class Robot extends Agent
         }
         closestSensorMeasurement = sensorBelt.getMeasurement(closestSensor);
 
-        double robotAngle;
+        double sensedDistance;
         if (sensorBelt.hasHit(closestSensor)) {
-            robotAngle = getRadius() + closestSensorMeasurement;
+            sensedDistance = getRadius() + closestSensorMeasurement;
         } else {
-            robotAngle = getRadius() + sensorBelt.getMaxRange();
+            sensedDistance = getRadius() + sensorBelt.getMaxRange();
         }
 
         Point3d pointOfImpact = new Point3d(
-                robotAngle * Math.cos(sensorBelt.getSensorAngle(closestSensor)),
+                sensedDistance * Math.cos(sensorBelt.getSensorAngle(closestSensor)),
                 0,
-                robotAngle * Math.sin(sensorBelt.getSensorAngle(closestSensor))
+                sensedDistance * Math.sin(sensorBelt.getSensorAngle(closestSensor))
         );
         double distanceToPointOfImpact = pointOfImpact.distance(new Point3d(0, 0, 0));
 

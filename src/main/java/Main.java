@@ -1,8 +1,10 @@
-import simbad.sim.Agent;
+import simbad.gui.Simbad;
+import simbad.sim.*;
 
-public class Main
-{
+public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Test");
-    }
+            Simbad simbad = new Simbad(new Env(), false);
+            simbad.update(simbad.getGraphics());
+        }
 }

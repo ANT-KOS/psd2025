@@ -106,7 +106,7 @@ public class Robot extends Agent
         if (robotTooClose) {
             robotPrimitive = RobotPrimitive.FOLLOW;
         } else {
-            setTranslationalVelocity(3);
+            setTranslationalVelocity(2);
             robotPrimitive = RobotPrimitive.ORIENTATE;
         }
     }

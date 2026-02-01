@@ -90,7 +90,7 @@ public class Robot extends Agent
             threshold = 0.007;
         }
 
-        if (Math.abs(rightLightIntensity - leftLightIntensity) > threshold) {
+        if (Math.abs(leftLightIntensity - rightLightIntensity) > threshold) {
             setRotationalVelocity(Math.signum(leftLightIntensity - rightLightIntensity) * 1);
         } else if (centerLightIntensity > leftLightIntensity) {
             setRotationalVelocity(2);

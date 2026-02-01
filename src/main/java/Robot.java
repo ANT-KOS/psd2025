@@ -13,8 +13,8 @@ public class Robot extends Agent
     RangeSensorBelt sensorBelt;
     RobotPrimitive robotPrimitive;
     double lumIntensity1, lumIntensity2, lumIntensity3;
-    double targetLum = 0.8;
-    double distanceToObstacleLimit = 0.75;
+    double targetLum = 0.85;
+    double distanceToObstacleLimit = 0.55;
     double iL, iH;
 
     static double K1 = 3;
@@ -39,8 +39,8 @@ public class Robot extends Agent
 
     public void performBehavior()
     {
-        double rightLightIntensity = leftLS.getLux() * 10;
-        double leftLightIntensity = rightLS.getLux() * 10;
+        double rightLightIntensity = rightLS.getLux() * 10;
+        double leftLightIntensity = leftLS.getLux() * 10;
         double centerLightIntensity = centerLS.getLux() * 10;
 
         lumIntensity1 = lumIntensity2;
@@ -84,10 +84,19 @@ public class Robot extends Agent
     private void orientate(double rightLightIntensity, double leftLightIntensity, double centerLightIntensity) {
         setTranslationalVelocity(0);
 
-        if (Math.abs(rightLightIntensity - leftLightIntensity) > 0.01) {
-            setRotationalVelocity(Math.signum(rightLightIntensity - leftLightIntensity) * 0.7);
+        System.out.println("Right Light Intensity: " + rightLightIntensity);
+        System.out.println("Left Light Intensity: " + leftLightIntensity);
+        System.out.println("Center Light Intensity: " + centerLightIntensity);
+
+        double threshold = 0.001;
+        if ((rightLightIntensity + leftLightIntensity + centerLightIntensity / 3) > 0.5) {
+            threshold = 0.01;
+        }
+
+        if (Math.abs(rightLightIntensity - leftLightIntensity) > threshold) {
+            setRotationalVelocity(Math.signum(leftLightIntensity - rightLightIntensity) * 0.5);
         } else if (centerLightIntensity > leftLightIntensity) {
-            setRotationalVelocity(0.7);
+            setRotationalVelocity(2);
         } else {
             setRotationalVelocity(0);
             robotPrimitive = RobotPrimitive.MOVE_FORWARD;
@@ -95,17 +104,12 @@ public class Robot extends Agent
     }
 
     private void moveForward(RangeSensorBelt sensorBelt) {
-        boolean robotTooClose = false;
-        for (int i = 0; i < sensorBelt.getNumSensors(); i++) {
-            if (sensorBelt.getMeasurement(i) < distanceToObstacleLimit) {
-                robotTooClose = true;
-            }
-        }
+        boolean robotTooClose = sensorBelt.getFrontLeftQuadrantMeasurement() < distanceToObstacleLimit || sensorBelt.getFrontRightQuadrantMeasurement() < distanceToObstacleLimit;
 
         if (robotTooClose) {
             robotPrimitive = RobotPrimitive.FOLLOW;
         } else {
-            setTranslationalVelocity(1.5);
+            setTranslationalVelocity(3);
             robotPrimitive = RobotPrimitive.ORIENTATE;
         }
     }

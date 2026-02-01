@@ -9,8 +9,11 @@ public class Env extends EnvironmentDescription
     public Env()
     {
         light1IsOn = true;
-        light1SetPosition(0, 2, -3);
-        add(new Box(new Vector3d(0,0,0), new Vector3f(5,1,5), this));
-        add(new Robot(new Vector3d(-6, 0, 5), "Primary Robot"));
+        light1SetPosition(-3, 2, -7);
+        add(new Box(new Vector3d(0,0,7), new Vector3f(14,1,1),this));
+        add(new Box(new Vector3d(-2,0,3), new Vector3f(12,1,1),this));
+        add(new Box(new Vector3d(-1.5,0,-1), new Vector3f(6,1,1),this));
+        add(new Box(new Vector3d(-1,0,-4), new Vector3f(8,1,1),this));
+        add(new Robot(new Vector3d(-8, 0, 8), "Primary Robot"));
     }
 }

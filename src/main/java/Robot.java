@@ -14,7 +14,7 @@ public class Robot extends Agent
     RobotPrimitive robotPrimitive;
 
     double lumIntensity1, lumIntensity2, lumIntensity3;
-    double targetLum = 0.85;
+    double targetLum = 0.90;
     double distanceToObstacleLimit = 0.65;
     double iL, iH;
 

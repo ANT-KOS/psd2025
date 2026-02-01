@@ -40,4 +40,5 @@ build/
 
 ### Various Files ###
 *.odt
+*.odt#
 *.pdf

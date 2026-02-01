@@ -87,7 +87,7 @@ public class Robot extends Agent
         if (Math.abs(rightLightIntensity - leftLightIntensity) > 0.01) {
             setRotationalVelocity(Math.signum(rightLightIntensity - leftLightIntensity) * 0.7);
         } else if (centerLightIntensity > leftLightIntensity) {
-            setRotationalVelocity(0.5);
+            setRotationalVelocity(0.7);
         } else {
             setRotationalVelocity(0);
             robotPrimitive = RobotPrimitive.MOVE_FORWARD;

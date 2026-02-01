@@ -28,7 +28,7 @@ public class Robot extends Agent
         leftLS = RobotFactory.addLightSensorLeft(this);
         rightLS = RobotFactory.addLightSensorRight(this);
         centerLS = RobotFactory.addLightSensor(this);
-        sensorBelt = RobotFactory.addSonarBeltSensor(this, 8);
+        sensorBelt = RobotFactory.addSonarBeltSensor(this, 16);
 
         robotPrimitive = RobotPrimitive.ORIENTATE;
     }

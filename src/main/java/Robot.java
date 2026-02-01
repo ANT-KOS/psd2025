@@ -14,7 +14,7 @@ public class Robot extends Agent
     RobotPrimitive robotPrimitive;
     double lumIntensity1, lumIntensity2, lumIntensity3;
     double targetLum = 0.85;
-    double distanceToObstacleLimit = 0.55;
+    double distanceToObstacleLimit = 0.65;
     double iL, iH;
 
     static double K1 = 3;
@@ -84,17 +84,13 @@ public class Robot extends Agent
     private void orientate(double rightLightIntensity, double leftLightIntensity, double centerLightIntensity) {
         setTranslationalVelocity(0);
 
-        System.out.println("Right Light Intensity: " + rightLightIntensity);
-        System.out.println("Left Light Intensity: " + leftLightIntensity);
-        System.out.println("Center Light Intensity: " + centerLightIntensity);
-
         double threshold = 0.001;
         if ((rightLightIntensity + leftLightIntensity + centerLightIntensity / 3) > 0.5) {
-            threshold = 0.01;
+            threshold = 0.007;
         }
 
         if (Math.abs(rightLightIntensity - leftLightIntensity) > threshold) {
-            setRotationalVelocity(Math.signum(leftLightIntensity - rightLightIntensity) * 0.5);
+            setRotationalVelocity(Math.signum(leftLightIntensity - rightLightIntensity) * 1);
         } else if (centerLightIntensity > leftLightIntensity) {
             setRotationalVelocity(2);
         } else {

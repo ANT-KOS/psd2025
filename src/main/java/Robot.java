@@ -40,9 +40,9 @@ public class Robot extends Agent
 
     public void performBehavior()
     {
-        double rightLightIntensity = rightLS.getLux() * 10;
-        double leftLightIntensity = leftLS.getLux() * 10;
-        double centerLightIntensity = centerLS.getLux() * 10;
+        double rightLightIntensity = getStandardizedLux(rightLS.getLux());
+        double leftLightIntensity = getStandardizedLux(leftLS.getLux());
+        double centerLightIntensity = getStandardizedLux(centerLS.getLux());
 
         lumIntensity1 = lumIntensity2;
         lumIntensity2 = lumIntensity3;
@@ -62,7 +62,7 @@ public class Robot extends Agent
                 break;
             case MOVE_FORWARD:
                 moveForward(sensorBelt);
-                centerLightIntensity = centerLS.getLux() * 10;
+                centerLightIntensity = getStandardizedLux(centerLS.getLux());
                 if (iL != centerLightIntensity) {
                     iH = centerLightIntensity;
                 }
@@ -151,5 +151,10 @@ public class Robot extends Agent
         while (a<=-Math.PI)
             a += Math.PI*2;
         return a;
+    }
+    
+    private double getStandardizedLux(double lux)
+    {
+        return  lux * 10;
     }
 }
